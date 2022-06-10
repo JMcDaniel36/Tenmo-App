@@ -1,5 +1,6 @@
 package com.techelevator.util;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
@@ -14,7 +15,7 @@ public class BasicLogger {
 	public static void log(String message) {
 		try {
 			if (pw == null) {
-				String logFilename = "logs/" + LocalDate.now().format(DateTimeFormatter.ISO_DATE) + ".log";
+				String logFilename = "/Users/JMcDa/Documents/Meritamerica/Capstone/module-2-capstone/log.txt" + LocalDate.now().format(DateTimeFormatter.ISO_DATE) + ".log";
 				pw = new PrintWriter(new FileOutputStream(logFilename, true));
 			}
 			pw.println(LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME) + " " + message);
