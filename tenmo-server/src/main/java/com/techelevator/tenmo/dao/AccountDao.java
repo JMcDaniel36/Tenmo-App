@@ -1,19 +1,13 @@
 package com.techelevator.tenmo.dao;
 
-import com.techelevator.tenmo.model.Transfer;
+import com.techelevator.tenmo.model.Account;
+import com.techelevator.tenmo.model.Balance;
 
-import java.util.List;
+import java.math.BigDecimal;
 
 public interface AccountDao {
-
-
-    void createTransfer(Transfer transfer);
-
-    List<Transfer> getTransfersByUserId(int userId);
-
-    Transfer getTransferByTransferId(int transferId);
-
-    List<Transfer> getAllTransfers();
-
-    void updateTransfer(Transfer transfer);
+    Balance getBalance(String user);
+    Account getAccountByUserID(int userId);
+    Account getAccountByAccountID(int accountId);
+    void updateAccount(Account accountToUpdate);
 }

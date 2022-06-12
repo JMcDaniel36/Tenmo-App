@@ -1,7 +1,7 @@
 package com.techelevator.tenmo.controller;
 
 
-import com.techelevator.tenmo.dao.AccountDao;
+import com.techelevator.tenmo.dao.TransferDao;
 import com.techelevator.tenmo.dao.UserDao;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     UserDao userDao;
-    AccountDao transferDao;
+    TransferDao transferDao;
 
 //Autowire all of them?
 
