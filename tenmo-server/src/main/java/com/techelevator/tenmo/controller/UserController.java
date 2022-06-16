@@ -3,6 +3,7 @@ package com.techelevator.tenmo.controller;
 
 import com.techelevator.tenmo.dao.*;
 import com.techelevator.tenmo.model.*;
+import com.techelevator.tenmo.exceptions.InsufficientFunds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -111,10 +112,10 @@ public class UserController {
     }
 
     @RequestMapping(path="/transfers/{id}", method = RequestMethod.PUT)
-    public void updateTransferStatus(@RequestBody Transfer transfer, @PathVariable int id)  {
+    public void updateTransferStatus(@RequestBody Transfer transfer, @PathVariable int id) throws InsufficientFunds {
 
         // only go through with the transfer if it is approved
-        if(transfer.getTransferStatusId() == transferStatusDao.getTransferStatusByDesc("Approved").getTransferStatusId()) {
+        if (transfer.getTransferStatusId() == transferStatusDao.getTransferStatusByDesc("Approved").getTransferStatusId()) {
 
             BigDecimal amountToTransfer = transfer.getAmount();
             Account accountFrom = accountDao.getAccountByAccountID(transfer.getAccountFrom());
@@ -130,7 +131,6 @@ public class UserController {
         } else {
             transferDao.updateTransfer(transfer);
         }
-
     }
 
 }
