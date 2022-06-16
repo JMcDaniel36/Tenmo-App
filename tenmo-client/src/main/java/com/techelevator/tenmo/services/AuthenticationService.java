@@ -15,12 +15,9 @@ import com.techelevator.tenmo.model.UserCredentials;
 
 public class AuthenticationService {
 
-    private final String baseUrl;
+    private final String baseUrl = "http://localhost:8080/";;
     private final RestTemplate restTemplate = new RestTemplate();
 
-    public AuthenticationService(String url) {
-        this.baseUrl = url;
-    }
 
     public AuthenticatedUser login(UserCredentials credentials) {
         HttpEntity<UserCredentials> entity = createCredentialsEntity(credentials);

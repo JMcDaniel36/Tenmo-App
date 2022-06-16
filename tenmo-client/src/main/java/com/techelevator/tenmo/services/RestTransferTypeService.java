@@ -12,13 +12,8 @@ import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
 
 public class RestTransferTypeService implements TransferTypeService{
-    private final String baseUrl;
-    private RestTemplate restTemplate;
-
-    public RestTransferTypeService(String baseUrl) {
-        this.baseUrl = baseUrl;
-        this.restTemplate = new RestTemplate();
-    }
+    private final String baseUrl = "http://localhost:8080";;
+    private final RestTemplate restTemplate = new RestTemplate();
 
     @Override
     public TransferType getTransferTypeByDesc(AuthenticatedUser authenticatedUser, String description) {
