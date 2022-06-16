@@ -11,12 +11,11 @@ import org.springframework.web.client.RestTemplate;
 
 public class RestTransferStatusService implements  TransferStatusService{
 
-    private final String baseUrl;
+    private final String baseUrl ="http://localhost:8080/";;
     private RestTemplate restTemplate;
 
 
     public RestTransferStatusService(String baseUrl) {
-        this.baseUrl = baseUrl;
         this.restTemplate = new RestTemplate();
     }
 

@@ -11,11 +11,10 @@ import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
 
 public class RestTransferService implements  TransferService{
-    private final String baseUrl;
+    private final String baseUrl = "http://localhost:8080/";;
     private RestTemplate restTemplate;
 
     public RestTransferService(String baseUrl, RestTemplate restTemplate) {
-        this.baseUrl = baseUrl;
         this.restTemplate = restTemplate;
     }
 
