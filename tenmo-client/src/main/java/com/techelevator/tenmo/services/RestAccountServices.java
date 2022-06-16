@@ -3,7 +3,6 @@ package com.techelevator.tenmo.services;
 import com.techelevator.tenmo.model.Account;
 import com.techelevator.tenmo.model.AuthenticatedUser;
 import com.techelevator.tenmo.model.Balance;
-import io.cucumber.java.en_old.Ac;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -31,7 +30,7 @@ public class RestAccountServices implements AccountService{
     }
 
     @Override
-    public Account getAccountByUserId(AuthenticatedUser authenticatedUser, int userId) {
+    public Account getAccountByUserId(AuthenticatedUser authenticatedUser, Long userId) {
         Account account = null;
         HttpEntity entity = createHttpEntity(authenticatedUser);
         try {

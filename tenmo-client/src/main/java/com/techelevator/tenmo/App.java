@@ -15,7 +15,13 @@ public class App {
     private final AuthenticationService authenticationService = new AuthenticationService(API_BASE_URL);
 
     private AuthenticatedUser currentUser;
-
+    private ConsoleService console;
+    private AuthenticatedUser authenticatedUser;
+    private AccountService accountService;
+    private UserService userService;
+    private TransferTypeService transferTypeService;
+    private TransferStatusService transferStatusService;
+    private TransferService transferService;
 
 
     public static void main(String[] args) {
@@ -89,18 +95,24 @@ public class App {
     }
 
 	private void viewCurrentBalance() {
-		// TODO Auto-generated method stub
-		
+        Balance balance = accountService.getBalance(currentUser);
+		System.out.println("Your current balance is" + balance.getBalance());
 	}
 
 	private void viewTransferHistory() {
-		// TODO Auto-generated method stub
-		
+		Transfer[] transfers = transferService.getTransfersByUserId(currentUser, Math.toIntExact(currentUser.getUser().getId()));
+        System.out.println("-------------------------------");
+        System.out.println("Transfers");
+        System.out.println("ID     From/To          Amount");
+        System.out.println("-------------------------------");
+
+        Account currentUserId = accountService.getAccountByUserId(currentUser, currentUser.getUser().getId());
+
 	}
 
 	private void viewPendingRequests() {
-		// TODO Auto-generated method stub
-		
+		 System.out.println("We did not do pending requests. Sorry.");
+
 	}
 
 	private void sendBucks() {

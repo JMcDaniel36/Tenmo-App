@@ -18,6 +18,9 @@ public class AuthenticationService {
     private final String baseUrl = "http://localhost:8080/";;
     private final RestTemplate restTemplate = new RestTemplate();
 
+    public AuthenticationService(String apiBaseUrl) {
+    }
+
 
     public AuthenticatedUser login(UserCredentials credentials) {
         HttpEntity<UserCredentials> entity = createCredentialsEntity(credentials);
