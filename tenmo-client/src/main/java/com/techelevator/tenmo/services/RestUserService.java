@@ -10,13 +10,8 @@ import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
 
 public class RestUserService implements UserService{
-    private RestTemplate restTemplate;
-    private final String BASE_URL = "http://localhost:8080/";
-
-    public RestUserService() {
-        this.restTemplate = new RestTemplate();
-    }
-
+    private final RestTemplate restTemplate = new RestTemplate();
+    private final String BASE_URL = "http://localhost:8080";
 
     @Override
     public User[] findAll(AuthenticatedUser authenticatedUser) {
