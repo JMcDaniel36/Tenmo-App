@@ -38,9 +38,10 @@ public class RestAccountServices implements AccountService{
     @Override
     public Account getAccountByUserId(AuthenticatedUser authenticatedUser, int userId) {
         Account account = null;
+        HttpEntity entity = createHttpEntity(authenticatedUser);
         try {
             account = restTemplate.exchange(baseUrl + "account/user/" + userId,
-                    HttpMethod.GET, createHttpEntity(authenticatedUser), Account.class).getBody();
+                    HttpMethod.GET, entity, Account.class).getBody();
         }  catch(RestClientResponseException e){
             System.out.println("Unable to complete request. Code: " + e.getRawStatusCode());
         } catch(ResourceAccessException e) {
@@ -52,9 +53,10 @@ public class RestAccountServices implements AccountService{
     @Override
     public Account getAccountById(AuthenticatedUser authenticatedUser, int accountId) {
         Account account = null;
+        HttpEntity entity = createHttpEntity(authenticatedUser);
         try{
             account = restTemplate.exchange(baseUrl + "account/" + accountId,
-                    HttpMethod.GET, createHttpEntity(authenticatedUser), Account.class).getBody();
+                    HttpMethod.GET, entity, Account.class).getBody();
         } catch(RestClientResponseException e){
             System.out.println("Unable to complete request. Code: " + e.getRawStatusCode());
         } catch(ResourceAccessException e) {
