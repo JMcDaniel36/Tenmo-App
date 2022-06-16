@@ -17,4 +17,5 @@ public interface TransferService {
 
     void updateTransfer(AuthenticatedUser authenticatedUser, Transfer transfer);
 
+    void createTransfer();
 }

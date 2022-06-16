@@ -88,4 +88,11 @@ public class ConsoleService {
         System.out.println("An error occurred. Check the log for details.");
     }
 
+    public int getUserInputInteger(String s) {
+        return 0;
+    }
+
+    public String getUserInput(String enter_amount) {
+        return enter_amount;
+    }
 }

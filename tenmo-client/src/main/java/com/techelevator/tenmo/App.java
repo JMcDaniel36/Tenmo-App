@@ -36,6 +36,13 @@ public class App {
             mainMenu();
         }
     }
+    private boolean validateUserChoice(int userIdChoice, User[] users, AuthenticatedUser currentUser) {
+        return false;
+    }
+
+    private void printUserOptions(AuthenticatedUser currentUser, User[] users) {
+    }
+
     private void loginMenu() {
         int menuSelection = -1;
         while (menuSelection != 0 && currentUser == null) {
@@ -94,13 +101,13 @@ public class App {
         }
     }
 
-	private void viewCurrentBalance() {
+    private void viewCurrentBalance() {
         Balance balance = accountService.getBalance(currentUser);
-		System.out.println("Your current balance is" + balance.getBalance());
-	}
+        System.out.println("Your current balance is" + balance.getBalance());
+    }
 
-	private void viewTransferHistory() {
-		Transfer[] transfers = transferService.getTransfersByUserId(currentUser, Math.toIntExact(currentUser.getUser().getId()));
+    private void viewTransferHistory() {
+        Transfer[] transfers = transferService.getTransfersByUserId(currentUser, Math.toIntExact(currentUser.getUser().getId()));
         System.out.println("-------------------------------");
         System.out.println("Transfers");
         System.out.println("ID     From/To          Amount");
@@ -108,21 +115,34 @@ public class App {
 
         Account currentUserId = accountService.getAccountByUserId(currentUser, currentUser.getUser().getId());
 
-	}
+    }
 
-	private void viewPendingRequests() {
-		 System.out.println("We did not do pending requests. Sorry.");
+    private void viewPendingRequests() {
+        System.out.println("We did not do pending requests. Sorry.");
 
-	}
+    }
 
-	private void sendBucks() {
-		// TODO Auto-generated method stub
+    private void sendBucks() {
+        User[] users = userService.getAllUsers(currentUser);
+        printUserOptions(currentUser, users);
 
-	}
+        int userIdChoice = console.getUserInputInteger("Enter ID of user you are sending to (0 to cancel)");
+        if (validateUserChoice(userIdChoice, users, currentUser)) {
+            String amountChoice = console.getUserInput("Enter amount");
+            transferService.createTransfer();
+        }
 
-	private void requestBucks() {
-		// TODO Auto-generated method stub
-		
-	}
-
-}
+    }
+    private void requestBucks() {
+        User[] users = userService.getAllUsers(currentUser);
+        printUserOptions(currentUser, users);
+        int userIdChoice = console.getUserInputInteger("Enter ID of user you are requesting from (0 to cancel)");
+        if (validateUserChoice(userIdChoice, users, currentUser)) {
+            String amountChoice = console.getUserInput("Enter amount");
+            transferService.createTransfer();
+        }
+    }
+    private void exitProgram () {
+        System.exit(0);
+    }
+    }
