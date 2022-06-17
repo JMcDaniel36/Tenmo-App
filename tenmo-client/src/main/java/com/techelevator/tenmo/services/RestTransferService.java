@@ -14,6 +14,9 @@ public class RestTransferService implements  TransferService{
     private final String baseUrl = "http://localhost:8080";;
     private final RestTemplate restTemplate = new RestTemplate();
 
+    public RestTransferService(String apiBaseUrl) {
+    }
+
 
     @Override
     public void createTransfer(AuthenticatedUser authenticatedUser, Transfer transfer) {
@@ -29,6 +32,10 @@ public class RestTransferService implements  TransferService{
         } catch(ResourceAccessException e) {
             System.out.println("Could not complete request due to server network issue. Please try again.");
         }
+    }
+    @Override
+    public void createTransfer() {
+
     }
 
     @Override
@@ -90,6 +97,9 @@ public class RestTransferService implements  TransferService{
             System.out.println("Could not complete request due to server network issue. Please try again.");
         }
     }
+
+
+
 
     private HttpEntity createHttpEntity(AuthenticatedUser authenticatedUser) {
         HttpHeaders httpHeaders = new HttpHeaders();

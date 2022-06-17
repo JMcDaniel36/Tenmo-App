@@ -15,6 +15,10 @@ public class RestTransferTypeService implements TransferTypeService{
     private final String baseUrl = "http://localhost:8080";;
     private final RestTemplate restTemplate = new RestTemplate();
 
+    public RestTransferTypeService(String apiBaseUrl) {
+    }
+
+
     @Override
     public TransferType getTransferTypeByDesc(AuthenticatedUser authenticatedUser, String description) {
         HttpEntity entity = createHttpEntity(authenticatedUser);

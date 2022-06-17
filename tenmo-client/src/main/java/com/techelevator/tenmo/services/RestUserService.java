@@ -56,6 +56,7 @@ public class RestUserService implements UserService{
     }
 
 
+
     private HttpEntity makeEntity(AuthenticatedUser authenticatedUser) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setBearerAuth(authenticatedUser.getToken());

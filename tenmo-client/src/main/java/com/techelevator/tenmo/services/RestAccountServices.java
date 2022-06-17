@@ -14,6 +14,9 @@ public class RestAccountServices implements AccountService{
     private final String baseUrl = "http://localhost:8080";;
     private final RestTemplate restTemplate = new RestTemplate();
 
+    public RestAccountServices(String apiBaseUrl) {
+    }
+
 
     @Override
     public Balance getBalance(AuthenticatedUser authenticatedUser) {

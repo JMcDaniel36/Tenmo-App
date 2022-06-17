@@ -11,5 +11,4 @@ public interface UserService {
 
     User findIdByUsername(AuthenticatedUser authenticatedUser, String username);
 
-    User[] getAllUsers(AuthenticatedUser currentUser);
 }

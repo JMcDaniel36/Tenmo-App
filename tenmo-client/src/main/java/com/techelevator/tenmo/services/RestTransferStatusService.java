@@ -14,6 +14,9 @@ public class RestTransferStatusService implements  TransferStatusService{
     private final String baseUrl ="http://localhost:8080";;
     private final RestTemplate restTemplate = new RestTemplate();
 
+    public RestTransferStatusService(String apiBaseUrl) {
+    }
+
     @Override
     public TransferStatus getTransferStatusById(AuthenticatedUser authenticatedUser, int transferStatusId) {
         HttpEntity entity = createHttpEntity(authenticatedUser);
