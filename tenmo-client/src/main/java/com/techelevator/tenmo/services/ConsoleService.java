@@ -4,6 +4,8 @@ package com.techelevator.tenmo.services;
 import com.techelevator.tenmo.model.User;
 import com.techelevator.tenmo.model.UserCredentials;
 
+import java.io.InputStream;
+import java.io.PrintStream;
 import java.math.BigDecimal;
 import java.util.Scanner;
 
@@ -13,6 +15,7 @@ public class ConsoleService {
 
     private final Scanner scanner = new Scanner(System.in);
     private Scanner in;
+
 
     public int promptForMenuSelection(String prompt) {
         int menuSelection;
@@ -27,7 +30,7 @@ public class ConsoleService {
 
     public void printGreeting() {
         out.println("*********************");
-        out.println("* Welcome to TEnmo! *");
+        out.println("* Welcome to Bank of Ghibli! *");
         out.println("*********************");
     }
 

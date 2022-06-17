@@ -18,7 +18,6 @@ public class App {
 
     private AuthenticatedUser currentUser;
     private ConsoleService console;
-    private AuthenticatedUser authenticatedUser;
     private AccountService accountService;
     private UserService userService;
     private TransferTypeService transferTypeService;
@@ -43,6 +42,7 @@ public class App {
         App app = new App();
         app.run();
     }
+
 
 
     private void run() {
@@ -130,7 +130,8 @@ public class App {
             } else if (menuSelection == 5) {
                 requestBucks();
             } else if (menuSelection == 0) {
-                continue;
+                System.out.println("Thank you for using Bank of Ghibli! See you again soon!");
+                exitProgram();
             } else {
                 System.out.println("Invalid Selection");
             }
@@ -139,12 +140,12 @@ public class App {
     }
 
     private void viewCurrentBalance() {
-        Balance balance = accountService.getBalance(authenticatedUser);
+        Balance balance = accountService.getBalance(currentUser);
         System.out.println("Your current balance is" + balance.getBalance());
     }
 
     private void viewTransferHistory() {
-        Transfer[] transfers = transferService.getTransfersByUserId(authenticatedUser, Math.toIntExact(currentUser.getUser().getId()));
+        Transfer[] transfers = transferService.getTransfersByUserId(currentUser, Math.toIntExact(currentUser.getUser().getId()));
         System.out.println("-------------------------------");
         System.out.println("Transfers");
         System.out.println("ID     From/To          Amount");

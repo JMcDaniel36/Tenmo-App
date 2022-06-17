@@ -17,7 +17,6 @@ public class RestAccountServices implements AccountService{
     public RestAccountServices(String apiBaseUrl) {
     }
 
-
     @Override
     public Balance getBalance(AuthenticatedUser authenticatedUser) {
         HttpEntity entity = createHttpEntity(authenticatedUser);
