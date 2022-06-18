@@ -6,7 +6,7 @@ import com.techelevator.tenmo.model.Balance;
 
 public interface AccountService {
 
-    Balance getBalance(AuthenticatedUser authenticatedUser);
+    Balance getBalance(AuthenticatedUser authenticatedUser) throws Exception;
 
     Account getAccountByUserId(AuthenticatedUser authenticatedUser, Long userId);
 

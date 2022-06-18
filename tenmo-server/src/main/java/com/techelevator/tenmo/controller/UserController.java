@@ -4,9 +4,11 @@ package com.techelevator.tenmo.controller;
 import com.techelevator.tenmo.dao.*;
 import com.techelevator.tenmo.model.*;
 import com.techelevator.tenmo.exceptions.InsufficientFunds;
+import com.techelevator.tenmo.security.jwt.TokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.web.bind.annotation.*;
 import com.techelevator.tenmo.model.Balance;
 
@@ -29,11 +31,23 @@ public class UserController {
 
     AccountDao accountDao;
 
+//    public UserController(UserDao UserDao, TransferDao TransferDao, TransferTypeDao TransferTypeDao, TransferStatusDao TransferStatusDao, AccountDao AccountDao) {
+//        this.userDao = UserDao;
+//        this.transferDao = TransferDao;
+//        this.transferTypeDao = TransferTypeDao;
+//        this.transferStatusDao = TransferStatusDao;
+//        this.accountDao = AccountDao;
+//    }
+
+    public UserController(AccountDao AccountDao){
+        this.accountDao = AccountDao;
+    }
 
 @RequestMapping(path = "/balance", method = RequestMethod.GET)
     public Balance getBalance(Principal principal) {
         System.out.println(principal.getName());
-        return accountDao.getBalance(principal.getName());
+        Balance balance = accountDao.getBalance(principal.getName());
+        return balance;
     }
 
 @RequestMapping(path = "/users", method = RequestMethod.GET)

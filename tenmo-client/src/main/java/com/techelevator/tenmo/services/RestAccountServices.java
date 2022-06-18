@@ -18,17 +18,19 @@ public class RestAccountServices implements AccountService{
     }
 
     @Override
-    public Balance getBalance(AuthenticatedUser authenticatedUser) {
+    public Balance getBalance(AuthenticatedUser authenticatedUser) throws Exception {
         HttpEntity entity = createHttpEntity(authenticatedUser);
-        Balance balance = null;
         try{
+            Balance balance = null;
             balance = restTemplate.exchange(baseUrl + "/balance", HttpMethod.GET, entity, Balance.class).getBody();
+            return balance;
         } catch(RestClientResponseException e){
             System.out.println("Unable to complete request. Code: " + e.getRawStatusCode());
         } catch(ResourceAccessException e) {
             System.out.println("Unable to complete request due to server network issue. Please try again.");
         }
-        return balance;
+
+        throw new Exception("shits fucked");
     }
 
     @Override

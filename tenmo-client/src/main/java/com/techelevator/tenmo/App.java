@@ -24,8 +24,7 @@ public class App {
     private TransferStatusService transferStatusService;
     private TransferService transferService;
 
-    public App(ConsoleService console, AuthenticationService authenticationService) {
-        this.console = console;
+    public App() {
         this.accountService = new RestAccountServices(API_BASE_URL);
         this.userService = new RestUserService();
         this.transferTypeService = new RestTransferTypeService(API_BASE_URL);
@@ -33,19 +32,15 @@ public class App {
         this.transferService = new RestTransferService(API_BASE_URL);
     }
 
-    public App() {
 
-    }
-
-
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         App app = new App();
         app.run();
     }
 
 
 
-    private void run() {
+    private void run() throws Exception {
         consoleService.printGreeting();
         loginMenu();
         if (currentUser != null) {
@@ -114,7 +109,7 @@ public class App {
         }
     }
 
-    private void mainMenu() {
+    private void mainMenu() throws Exception {
         int menuSelection = -1;
         while (menuSelection != 0) {
             consoleService.printMainMenu();
@@ -139,7 +134,7 @@ public class App {
         }
     }
 
-    private void viewCurrentBalance() {
+    private void viewCurrentBalance() throws Exception {
         Balance balance = accountService.getBalance(currentUser);
         System.out.println("Your current balance is" + balance.getBalance());
     }

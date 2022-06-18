@@ -24,7 +24,7 @@ public class JdbcUserDao implements UserDao {
 
     @Override
     public int findIdByUsername(String username) {
-        String sql = "SELECT user_id FROM tenmo_user WHERE username ILIKE ?;";
+        String sql = "SELECT user_id FROM tenmo_user WHERE username LIKE ?;";
         Integer id = jdbcTemplate.queryForObject(sql, Integer.class, username);
         if (id != null) {
             return id;
@@ -47,7 +47,7 @@ public class JdbcUserDao implements UserDao {
 
     @Override
     public User findByUsername(String username) throws UsernameNotFoundException {
-        String sql = "SELECT user_id, username, password_hash FROM tenmo_user WHERE username ILIKE ?;";
+        String sql = "SELECT user_id, username, password_hash FROM tenmo_user WHERE username LIKE ?;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, username);
         if (rowSet.next()){
             return mapRowToUser(rowSet);
