@@ -2,6 +2,8 @@ package com.techelevator.tenmo.services;
 
 import com.techelevator.tenmo.model.AuthenticatedUser;
 import com.techelevator.tenmo.model.Transfer;
+import com.techelevator.tenmo.model.TransferHistory;
+import com.techelevator.tenmo.model.User;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -12,9 +14,10 @@ import org.springframework.web.client.RestTemplate;
 
 public class RestTransferService implements  TransferService{
     private final String baseUrl = "http://localhost:8080";;
-    private final RestTemplate restTemplate = new RestTemplate();
+    private RestTemplate restTemplate = new RestTemplate();
 
-    public RestTransferService(String apiBaseUrl) {
+    public RestTransferService(String baseUrl) {
+
     }
 
 
@@ -26,25 +29,21 @@ public class RestTransferService implements  TransferService{
         HttpEntity<Transfer> entity = new HttpEntity(transfer, headers);
 
         try {
-            restTemplate.exchange(baseUrl + "transfers/" + transfer.getTransferId(), HttpMethod.POST, entity, Transfer.class);
+            restTemplate.exchange(baseUrl + "/transfers/" + transfer.getTransferId(), HttpMethod.POST, entity, Transfer.class);
         } catch(RestClientResponseException e) {
                 System.out.println("Could not complete request. Code: " + e.getRawStatusCode());
         } catch(ResourceAccessException e) {
             System.out.println("Could not complete request due to server network issue. Please try again.");
         }
     }
-    @Override
-    public void createTransfer() {
-
-    }
 
     @Override
-    public Transfer[] getTransfersByUserId(AuthenticatedUser authenticatedUser, int userId) {
+    public TransferHistory[] getTransfersByUserId(AuthenticatedUser authenticatedUser, int userId) {
         HttpEntity entity = createHttpEntity(authenticatedUser);
-        Transfer[] transfers = null;
+        TransferHistory[] transfers = null;
         try{
             transfers = restTemplate.exchange(baseUrl + "/transfers/user/" + userId, HttpMethod.GET,
-                    entity,Transfer[].class).getBody();
+                    entity,TransferHistory[].class).getBody();
         } catch(RestClientResponseException e) {
             System.out.println("Could not complete request. Code: " + e.getRawStatusCode());
         } catch(ResourceAccessException e) {
@@ -58,7 +57,7 @@ public class RestTransferService implements  TransferService{
         HttpEntity entity = createHttpEntity(authenticatedUser);
         Transfer transfer = null;
         try {
-            transfer = restTemplate.exchange(baseUrl + "/transfer/" + transferId, HttpMethod.GET,
+            transfer = restTemplate.exchange(baseUrl + "/transfers/" + transferId, HttpMethod.GET,
                     entity, Transfer.class).getBody();
         } catch(RestClientResponseException e) {
             System.out.println("Could not complete request. Code: " + e.getRawStatusCode());

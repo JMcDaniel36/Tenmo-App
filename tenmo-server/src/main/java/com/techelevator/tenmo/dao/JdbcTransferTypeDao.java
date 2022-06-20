@@ -4,10 +4,15 @@ import com.techelevator.tenmo.model.Transfer;
 import com.techelevator.tenmo.model.TransferType;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
+@Component
 public class JdbcTransferTypeDao implements TransferTypeDao{
     private JdbcTemplate jdbcTemplate;
 
+    public JdbcTransferTypeDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     @Override
     public TransferType getTransferTypeById(int transferId) {

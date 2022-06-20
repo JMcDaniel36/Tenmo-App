@@ -3,9 +3,6 @@ package com.techelevator.tenmo.services;
 
 import com.techelevator.tenmo.model.User;
 import com.techelevator.tenmo.model.UserCredentials;
-
-import java.io.InputStream;
-import java.io.PrintStream;
 import java.math.BigDecimal;
 import java.util.Scanner;
 
@@ -14,7 +11,6 @@ import static java.lang.System.out;
 public class ConsoleService {
 
     private final Scanner scanner = new Scanner(System.in);
-    private Scanner in;
 
 
     public int promptForMenuSelection(String prompt) {
@@ -46,9 +42,9 @@ public class ConsoleService {
         out.println();
         out.println("1: View your current balance");
         out.println("2: View your past transfers");
-        out.println("3: View your pending requests");
-        out.println("4: Send TE bucks");
-        out.println("5: Request TE bucks");
+     //   out.println("3: View your pending requests");
+        out.println("3: Send TE bucks");
+     //   out.println("5: Request TE bucks");
         out.println("0: Exit");
         out.println();
     }
@@ -98,9 +94,9 @@ public class ConsoleService {
     public int getUserInputInteger(String s) {
         Integer result = null;
         do {
-            out.print(s +": ");
+            out.println(s +": ");
             out.flush();
-            String userInput = in.nextLine();
+            String userInput = scanner.nextLine();
             try {
                 result = Integer.parseInt(userInput);
             } catch(NumberFormatException e) {
@@ -137,6 +133,12 @@ public class ConsoleService {
         out.flush();
     }
 
-    public void printTransferDetails(int transferId, String fromOrTo, BigDecimal amount) {
+
+
+
+    public void printApproveOrRejectOptions() {
+        out.println("1: Approve");
+        out.println("2: Reject");
+        out.println("0: Don't approve or reject\n");
     }
 }

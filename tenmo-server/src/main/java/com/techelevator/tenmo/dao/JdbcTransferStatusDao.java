@@ -3,11 +3,15 @@ package com.techelevator.tenmo.dao;
 import com.techelevator.tenmo.model.TransferStatus;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
+@Component
 public class JdbcTransferStatusDao implements TransferStatusDao {
     private JdbcTemplate jdbcTemplate;
 
-
+    public JdbcTransferStatusDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     @Override
     public TransferStatus getTransferStatusById(int transferStatusId) {

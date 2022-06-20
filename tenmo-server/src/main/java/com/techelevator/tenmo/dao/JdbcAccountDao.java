@@ -62,7 +62,7 @@ public class JdbcAccountDao implements AccountDao {
                 "SET balance = ? " +
                 "WHERE account_id = ?";
 
-        jdbcTemplate.update(sql, accountToUpdate.getBalance(), accountToUpdate.getAccountId());
+        jdbcTemplate.update(sql, accountToUpdate.getBalance().getBalance(), accountToUpdate.getAccountId());
     }
 
     private Account mapResultsToAccount(SqlRowSet result) {

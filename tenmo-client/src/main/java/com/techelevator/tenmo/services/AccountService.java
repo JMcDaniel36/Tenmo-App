@@ -11,4 +11,6 @@ public interface AccountService {
     Account getAccountByUserId(AuthenticatedUser authenticatedUser, Long userId);
 
     Account getAccountById(AuthenticatedUser authenticatedUser, int accountId);
+
+
 }
