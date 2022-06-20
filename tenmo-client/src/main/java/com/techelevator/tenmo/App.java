@@ -51,31 +51,14 @@ public class App {
         }
     }
 
-    private boolean validateUserChoice(int userIdChoice, User[] users, AuthenticatedUser currentUser) {
-        if (userIdChoice != 0) {
-            try {
-                boolean validUserIdChoice = false;
-
-                for (User user : users) {
-                    if (userIdChoice == currentUser.getUser().getId()) {
-                        System.out.println("You cannot send Totoro Bucks to yourself. ");
-                        throw new Exception();
-                    }
-                    if (user.getId() == userIdChoice) {
-                        validUserIdChoice = true;
-                        break;
-                    }
-                }
-                if (validUserIdChoice == false) {
-                    throw new Exception();
-                }
-                return true;
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+    private boolean validateUserChoice(int userIdChoice, AuthenticatedUser currentUser) {
+        if (userIdChoice != currentUser.getUser().getId()) {
+            return true;
         }
+        System.out.println("You cannot send Totoro Bucks to yourself. ");
         return false;
     }
+
 
     private void loginMenu() {
         int menuSelection = -1;
@@ -191,7 +174,7 @@ public class App {
 
         int userIdChoice = console.getUserInputInteger("Enter ID of user you are sending to (0 to cancel)");
         int userAmount = console.getUserInputInteger("Enter Amount you would like to send (0 to cancel)");
-        if (validateUserChoice(userIdChoice, users, currentUser) && userAmount != 0) {
+        if (validateUserChoice(userIdChoice, currentUser) && userAmount != 0) {
             Transfer transfer = new Transfer();
             transfer.setAccountTo(userIdChoice);
             transfer.setTransferTypeId(TransferStatusSend);
@@ -209,7 +192,7 @@ public class App {
         User[] users = userService.findAll(currentUser);
         printUserOptions(currentUser, users);
         int userIdChoice = console.getUserInputInteger("Enter ID of user you are requesting from (0 to cancel)");
-        if (validateUserChoice(userIdChoice, users, currentUser)) {
+        if (validateUserChoice(userIdChoice, currentUser)) {
             String amountChoice = console.getUserInput("Enter amount");
             //transferService.createTransfer();
         }
